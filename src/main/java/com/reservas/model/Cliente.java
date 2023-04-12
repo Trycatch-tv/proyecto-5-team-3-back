@@ -71,4 +71,12 @@ public class Cliente {
     public void setComentario(String comentario) {
         this.comentario = comentario;
     }
+
+    @Override
+    public String toString() {
+        return ("Telefono " + this.getTelefono() +
+                "email "  +
+                this.getCorreo()
+                + "comentario " + this.getComentario() +
+                "Nomre " + this.getComentario());    }
 }

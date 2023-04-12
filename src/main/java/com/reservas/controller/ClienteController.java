@@ -10,17 +10,17 @@ import java.util.List;
 
 @RestController
 @CrossOrigin
-@RequestMapping("/api/v1/cliente")
+@RequestMapping("/api/cliente")
 public class ClienteController {
 
     @Autowired
     private ClienteService clienteService;
 
-    @GetMapping("listarClientes")
+    @GetMapping("/")
     public ResponseEntity<List<Cliente>> listarClientes() {
         return ResponseEntity.ok(clienteService.listarClientes());
     }
-    @GetMapping("buscarCliente/{id}")
+    @GetMapping("/{id}")
     public ResponseEntity<Cliente> buscarClientePorId(@PathVariable Long id) {
         try{
             return ResponseEntity.ok(clienteService.buscarClientePorId(id));
@@ -32,29 +32,17 @@ public class ClienteController {
 
     }
 
-    @PostMapping("crearCliente")
+    @PostMapping("/")
     public ResponseEntity<Cliente> crearCliente(@RequestBody Cliente cliente) {
-        Boolean resultado = true;
-        if (cliente.getNombre_completo()!= null &&!cliente.getNombre_completo().isEmpty())
-            resultado = false;
-
-        if (cliente.getComentario()!= null &&!cliente.getComentario().isEmpty())
-            resultado = false;
-
-        if (cliente.getCorreo()!= null &&!cliente.getCorreo().isEmpty())
-            resultado = false;
-
-        if (cliente.getTelefono()!= null &&!cliente.getTelefono().isEmpty())
-            resultado = false;
-        if (resultado){
-        Cliente clienteCreado = clienteService.crearCliente(cliente);
-        return ResponseEntity.ok(clienteCreado);
-        }else{
+        try {
+            Cliente clienteCreado = clienteService.crearCliente(cliente);
+            return ResponseEntity.ok(clienteCreado);
+        }catch (Exception e){
             return ResponseEntity.badRequest().build();
         }
     }
 
-    @PutMapping("editarCliente/{id}")
+    @PutMapping("/{id}")
     public ResponseEntity<Cliente> editarCliente(@PathVariable Long id, @RequestBody Cliente cliente) {
         try {
             Cliente clienteExistente = clienteService.buscarClientePorId(id);
@@ -82,11 +70,17 @@ public class ClienteController {
     }
 
 
-    @DeleteMapping("eliminarCliente/{id}")
-    public ResponseEntity<?> eliminarCliente(@PathVariable Long id) {
+    @DeleteMapping("/{id}")
+    public ResponseEntity<Cliente> eliminarCliente(@PathVariable Long id) {
+
+        try {
+            Cliente clienteEliminado = clienteService.buscarClientePorId(id);
 
             clienteService.eliminarCliente(id);
-            return ResponseEntity.ok().build();
+            return ResponseEntity.ok(clienteEliminado);
+        }catch (Exception e){
+            return ResponseEntity.notFound().build();
+        }
     }
 
 
