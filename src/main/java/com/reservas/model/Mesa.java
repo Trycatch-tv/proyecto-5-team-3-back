@@ -15,7 +15,7 @@ public class Mesa {
 	    @Column(name = "capacidad",length = 100,nullable = false)
 	    private String capacidad;
 
-	    @Column(name = "email",length = 100,nullable = false)
+	    @Column(name = "location",length = 100,nullable = false)
 	    private String ubicacion;
 
 	    @Column(name = "comment",length = 255,nullable = false)
