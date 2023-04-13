@@ -20,7 +20,7 @@ import com.reservas.service.MesaService;
 
 @RestController
 @CrossOrigin
-@RequestMapping("/api/cliente")
+@RequestMapping("/api/mesa")
 public class MesaController {
 
 	@Autowired

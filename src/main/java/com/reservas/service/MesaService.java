@@ -2,11 +2,13 @@ package com.reservas.service;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
 
 import com.reservas.model.Mesa;
 import com.reservas.repository.IMesaRepository;
 
 
+@Service
 public class MesaService {
 	 @Autowired
 	    private IMesaRepository mesaRepository;
@@ -28,8 +30,6 @@ public class MesaService {
 	    }
 
 	    public void eliminarMesa(Long id) {
-
 	        mesaRepository.deleteById(id);
-
 	    }
 }
