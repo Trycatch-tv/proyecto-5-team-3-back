@@ -21,6 +21,11 @@ public class Cliente {
 
     @Column(name = "comment",length = 255,nullable = false)
     private String comentario;
+    
+     
+    @OneToMany(mappedBy = "cliente",fetch = FetchType.EAGER,cascade = CascadeType.ALL)
+    private List<Reserva>reserva;
+
 
     public Cliente() {
     }
