@@ -20,6 +20,10 @@ public class Mesa {
 
 	    @Column(name = "comment",length = 255,nullable = false)
 	    private String comentario;
+	
+	    @ManyToOne(fetch = FetchType.EAGER)
+	    private Reserva reserva;
+
 
 	    public Mesa() {
 	    }
