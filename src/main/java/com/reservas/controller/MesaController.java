@@ -81,7 +81,7 @@ public class MesaController {
 
 
     @DeleteMapping("/{id}")
-    public ResponseEntity<Mesa> eliminarCliente(@PathVariable Long id) {
+    public ResponseEntity<Mesa> eliminarMesa(@PathVariable Long id) {
 
         try {
             Mesa mesaEliminada = mesaService.buscarMesaPorId(id);
